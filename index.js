@@ -7,6 +7,17 @@ const PORT = 8001;
 
 app.use(express.urlencoded({extended:false}));
 
+app.use((req,res,next) =>{
+    console.log("Hello from middleware 1");
+    next();
+});
+
+app.use((req,res,next) =>{
+    console.log("Hello from middleware 2");
+    res.end("two");
+    
+});
+
 app.get("/api/users",(req,res)=>{
     return res.json(users);
 });
